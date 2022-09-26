@@ -10,6 +10,7 @@ public class DroolsLearningApplication {
     public static void main(String[] args) {
         SpringApplication.run(DroolsLearningApplication.class, args);
         STGroup stGroup = new STGroup();
+        // TODO: 2022/9/26 test 
     }
 
 }
