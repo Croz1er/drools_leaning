@@ -1,0 +1,22 @@
+wordImport(rules,package) ::=<<
+
+package <package>;
+import com.lujy.drools_learning.entity.User;
+<rules; sepseparator="\n\n">
+>>
+
+ruleValue(ruleName,lhs,rhs,salience)::=<<
+rule "<ruleName>"
+    dialect "java";
+    dialect  "mvel";
+    no-loop true;
+    salience <salience>;
+    when
+//        $i:Integer(min(100)|| compareTo(1000))
+          <lhs>
+    then
+        <rhs>
+        System.out.println("符合规则");
+end
+>>
+

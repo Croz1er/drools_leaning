@@ -1,0 +1,19 @@
+wordImport(rules) ::=<<
+package com.promote
+
+import	com.droolsboot.model.RuleResult;
+<rules; separator="\n\n">
+>>
+
+ruleValue(condition,action,rule) ::=<<
+rule "<rule.name>"
+	no-loop true
+		when
+		    $r:RuleResult(true)
+		then
+           modify($r){
+                setPromoteName(drools.getRule().getName())<if(action)>,
+                setFinallyMoney($r.getMoneySum() - <action.money><endif>)
+           }
+end
+>>

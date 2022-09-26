@@ -1,0 +1,12 @@
+package rules;
+dialect  "mvel"
+import com.lujy.drools_learning.entity.People
+
+rule "globalTest"
+    dialect "java"
+    when
+//        $i:Integer(min(100)|| compareTo(1000))
+
+    then
+        System.out.println("符合规则");
+end

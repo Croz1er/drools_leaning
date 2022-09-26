@@ -1,0 +1,39 @@
+package rules;
+dialect  "mvel"
+import   com.lujy.drools_learning.entity.User
+import com.lujy.drools_learning.entity.Account
+import com.lujy.drools_learning.entity.MyLog
+
+rule "pension"
+    dialect "java"
+    salience 10
+    no-loop true
+    when
+//        $i:Integer(min(100)|| compareTo(1000))\
+        $account:Account();
+        $log:MyLog()
+        $user:User((sex==1&&age>=70)||(sex==0&&age>=65));
+    then
+        $account.setMoney($account.getMoney()+200);
+        $log.setContent("本次发放为养老金发放");
+        $log.setCardId($account.getId());
+        update($account);
+        System.out.println("符合规则");
+end
+
+rule "One_child_allowance"
+    dialect "java"
+    salience 10
+    no-loop true
+    when
+        $account:Account();
+        $log:MyLog()
+        $user:User(age<=16);
+
+    then
+        $account.setMoney($account.getMoney()+100);
+        $log.setContent("本次发放为独生子女补贴发放");
+        $log.setCardId($account.getId());
+        update($account);
+                System.out.println("符合规则");
+ end
